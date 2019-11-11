@@ -8,7 +8,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+  <!-- Meta forms -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Backoffice</title>
 
   <!-- Font Awesome Icons -->
@@ -40,13 +41,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
+            <span class="badge badge-warning navbar-badge">1</span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">15 Notifications</span>
+            <span class="dropdown-header">1 Notificatió</span>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 nous missatges
+              <i class="fas fa-envelope mr-2"></i> 1 nou missatge
               <span class="float-right text-muted text-sm">Ara</span>
             </a>
           </div>
@@ -63,9 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
-        <span class="brand-text font-weight-light">BackOffice</span>
+        <span class="brand-text font-weight-light">Panell Administrador</span>
       </a>
 
       <!-- Sidebar -->

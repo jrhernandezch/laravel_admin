@@ -14,4 +14,12 @@
 Route::get('/', 'homeController@getInfo');
 Route::get('/home', 'homeController@getInfo');
 
-Route::get('/contact', 'contactController@getInfo');
+Route::get('/contact', 'contactController@getAllContacts');
+
+Route::get('/blog', 'blogController@getAllBlog');
+Route::post('/ajax/blog', 'AjaxController@getAjaxBlog')->middleware('only.ajax');
+
+/* Peticions AJAX
+************************/
+Route::post('/ajax/dades', 'AjaxController@getAjaxContact')->middleware('only.ajax');// Sólo llamadas de AJAX para HTML POST
+Route::get('/ajax/dades', 'AjaxController@getAjaxContact');// Llamadas ajax tipo API GET - Exemple

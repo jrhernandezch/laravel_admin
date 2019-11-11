@@ -8,10 +8,10 @@ use App\Contact;
 class contactController extends Controller
 {
     // Return data
-    public function getInfo(){
+    public function getAllContacts(){
         $contact = new Contact();
 
     	return view('contact')
-                ->with('data',$contact->getInfo());
+                ->with('data',$contact->getAllContacts());
     }
 }

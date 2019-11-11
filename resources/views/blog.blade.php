@@ -34,21 +34,23 @@
                 <thead>
                 <tr>
                   <th>id</th>
-                  <th>Name</th>
-                  <th>Phone</th>
-                  <th>Mail</th>
+                  <th>Title</th>
                   <th>Content</th>
+                  <th>Image</th>
                   <th>Date</th>
+                  <th>Important</th>
+                  <th>Visible</th>
                 </tr>
                 </thead>
                 <tfoot>
                   <tr>
                     <th>id</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Mail</th>
+                    <th>Title</th>
                     <th>Content</th>
+                    <th>Image</th>
                     <th>Date</th>
+                    <th>Important</th>
+                    <th>Visible</th>
                   </tr>
                 </tfoot>
               </table>
@@ -98,19 +100,20 @@ $(function () {
     "serverSide": true,
     "searching": false,
     "ajax": {
-      "url": "{{ url('ajax/dades') }}",
+      "url": "{{ url('ajax/blog') }}",
       "type": 'post',
       "data": {
         "_token": $("meta[name='csrf-token']").attr("content")
       }
     },
     "columns":[
-      {"data":"id_contact"},
-      {"data":"name"},
-      {"data":"phone_number"},
-      {"data":"mail"},
+      {"data":"id_blog"},
+      {"data":"title"},
       {"data":"content"},
-      {"data":"date"}
+      {"data":"image"},
+      {"data":"date"},
+      {"data":"important"},
+      {"data":"visible"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
       $(nRow).attr('id', 'tr-'+aData['id_contact']);
@@ -139,7 +142,7 @@ $(function () {
   });
 
   // Active menú
-  $('#contact').addClass('active');
+  $('#blog').addClass('active');
 });
 </script>
 @endsection

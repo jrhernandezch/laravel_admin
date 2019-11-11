@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\DB;
 class Contact extends Model
 {
     // Return data
-    public function getInfo(){
-    	
-        return "";
+    public function getAllContacts(){
+        $items = DB::table('contact_items')
+                ->select(['name', 'phone_number', 'mail', 'content', 'date'])
+                ->get();
+
+        return $items;
     }
 }
