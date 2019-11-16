@@ -12,6 +12,30 @@ class homeController extends Controller
         $home = new Home();
 
     	return view('home')
-                ->with('data',$home->getInfo());
+                ->with('home',$home->getInfo());
+    }
+
+    // Return general info
+    public function getGeneralInfo(){
+        $generalInfo = new Home();
+
+    	return view('generalinfo')
+                ->with('generalInfo',$generalInfo->getGeneralInfo());
+    }
+
+    // Return services
+    public function getServices(){
+        $services = new Home();
+
+    	return view('services')
+                ->with('services',$services->getSuccessCases());
+    }
+
+    // Return success cases
+    public function getSuccessCases(){
+        $success = new Home();
+
+    	return view('successcase')
+                ->with('successCases',$success->getSuccessCases());
     }
 }

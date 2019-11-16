@@ -12,4 +12,22 @@ class Home extends Model
     	
         return "";
     }
+
+    // Return data
+    public function getGeneralInfo(){
+    	
+        return "";
+    }
+
+    // Return data
+    public function getServices(){
+    	
+        return "";
+    }
+
+    // Return data
+    public function getSuccessCases(){
+    	
+        return "";
+    }
 }

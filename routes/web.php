@@ -11,15 +11,41 @@
 |
 */
 
+/* HOME
+************************/
 Route::get('/', 'homeController@getInfo');
 Route::get('/home', 'homeController@getInfo');
+Route::get('/success-cases', 'homeController@getSuccessCases');
+Route::get('/general-info', 'homeController@getGeneralInfo');
+Route::get('/services', 'homeController@getServices');
 
+Route::post('/ajax/general-info', 'AjaxController@getAjaxGeneralInfo')->middleware('only.ajax');
+Route::post('/ajax/icons-info', 'AjaxController@getAjaxIconsInfo')->middleware('only.ajax');
+Route::post('/ajax/social-media', 'AjaxController@getAjaxSocialMediaInfo')->middleware('only.ajax');
+Route::post('/ajax/services', 'AjaxController@getAjaxServices')->middleware('only.ajax');
+Route::post('/ajax/success-cases', 'AjaxController@getAjaxSuccessCase')->middleware('only.ajax');
+Route::post('/ajax/slide-info', 'AjaxController@getAjaxSlideInfo')->middleware('only.ajax');
+
+/* ABOUT US
+************************/
+Route::get('/company', 'aboutController@getCompany');
+Route::get('/team', 'aboutController@getTeam');
+Route::get('/clients', 'aboutController@getClients');
+
+Route::post('/ajax/company-info', 'AjaxController@getAjaxCompany')->middleware('only.ajax');
+Route::post('/ajax/team-info', 'AjaxController@getAjaxTeam')->middleware('only.ajax');
+Route::post('/ajax/clients-info', 'AjaxController@getAjaxClients')->middleware('only.ajax');
+
+/* CONTACT
+************************/
 Route::get('/contact', 'contactController@getAllContacts');
+Route::post('/ajax/dades', 'AjaxController@getAjaxContact')->middleware('only.ajax');
 
+/* BLOG
+************************/
 Route::get('/blog', 'blogController@getAllBlog');
 Route::post('/ajax/blog', 'AjaxController@getAjaxBlog')->middleware('only.ajax');
 
-/* Peticions AJAX
+/* AJAX
 ************************/
-Route::post('/ajax/dades', 'AjaxController@getAjaxContact')->middleware('only.ajax');// Sólo llamadas de AJAX para HTML POST
-Route::get('/ajax/dades', 'AjaxController@getAjaxContact');// Llamadas ajax tipo API GET - Exemple
+Route::get('/ajax/dades', 'AjaxController@getAjaxContact');// API GET

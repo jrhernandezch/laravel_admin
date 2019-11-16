@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Contacte</h1>
+          <h1 class="m-0 text-dark">Equip professional</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Contacte</a></li>
-            <li class="breadcrumb-item active">Contacte</li>
+            <li class="breadcrumb-item"><a href="#">Sobre nosaltres</a></li>
+            <li class="breadcrumb-item active">Equip professional</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,31 +26,29 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header bg-olive">
-              <h3 class="card-title">Entrades de blog</h3>
+              <h3 class="card-title">Llistat de l'equip professional</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="blog-table" class="table table-striped table-hover">
+              <table id="team-table" class="table table-hover table-striped">
                 <thead>
                 <tr>
                   <th>id</th>
-                  <th>Title</th>
+                  <th>Name</th>
+                  <th>Position</th>
                   <th>Content</th>
+                  <th>Mail</th>
                   <th>Image</th>
-                  <th>Date</th>
-                  <th>Important</th>
-                  <th>Visible</th>
                 </tr>
                 </thead>
                 <tfoot>
                   <tr>
                     <th>id</th>
-                    <th>Title</th>
+                    <th>Name</th>
+                    <th>Position</th>
                     <th>Content</th>
+                    <th>Mail</th>
                     <th>Image</th>
-                    <th>Date</th>
-                    <th>Important</th>
-                    <th>Visible</th>
                   </tr>
                 </tfoot>
               </table>
@@ -64,7 +62,7 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="blog-modal">
+  <div class="modal fade" id="team-modal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -89,15 +87,15 @@
 @endsection
 
 @section('css')
-<!-- DataTables -->
-<link rel="stylesheet" href="{!! asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') !!}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{!! asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') !!}">
 @endsection
 
 @section('script')
-<!-- DataTables -->
-<script src="{!! asset('plugins/datatables/jquery.dataTables.js') !!}"></script>
-<script src="{!! asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') !!}"></script>
+  <!-- DataTables -->
+  <script src="{!! asset('plugins/datatables/jquery.dataTables.js') !!}"></script>
+  <script src="{!! asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') !!}"></script>
 
-<!-- data -->
-<script src="{!! asset('dist/js/ajax/blog.js') !!}"></script>
+  <!-- data -->
+  <script src="{!! asset('dist/js/ajax/team.js') !!}"></script>
 @endsection

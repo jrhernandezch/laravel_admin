@@ -10,8 +10,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <!-- Meta forms -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Backoffice</title>
+  <title>Backoffice - Panell administrador</title>
 
+  <!-- Favicons -->
+  <link href="{{ asset('img/favicon.png') }}" rel="icon">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{!! asset('plugins/fontawesome-free/css/all.min.css') !!}">
   <!-- Theme style -->
@@ -63,7 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="{{ url('/home') }}" class="brand-link">
         <span class="brand-text font-weight-light">Panell Administrador</span>
       </a>
 
@@ -91,31 +93,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ url('/home') }}" class="nav-link" id="home">
-                    <i class="far fa-home nav-icon"></i>
-                    <p>Dades generals</p>
+                    <i class="fas fa-angle-right nav-icon"></i>
+                    <p>Dashboard</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-home nav-icon"></i>
-                    <p>Informació de resum</p>
+                  <a href="{{ url('/general-info') }}" class="nav-link" id="general-info">
+                    <i class="fas fa-angle-right nav-icon"></i>
+                    <p>Informació genèrica</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-home nav-icon"></i>
+                  <a href="{{ url('/services') }}" class="nav-link" id="services">
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Serveis</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-home nav-icon"></i>
+                  <a href="{{ url('/success-cases') }}" class="nav-link" id="success-case">
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Casos d'èxit</p>
                   </a>
                 </li>
@@ -123,31 +125,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <!-- ./Home -->
             <!-- About -->
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link" id="about-open">
+            <li class="nav-item has-treeview" id="about-open">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p> Sobre nosaltres <i class="right fas fa-angle-left"></i> </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-users nav-icon"></i>
+                  <a href="{{ url('/company') }}" class="nav-link" id="company">
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Nostra empresa</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-users nav-icon"></i>
+                  <a href="{{ url('/team') }}" class="nav-link" id="team">
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Equip professional</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-users nav-icon"></i>
+                  <a href="{{ url('/clients') }}" class="nav-link" id="clients">
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Clients</p>
                   </a>
                 </li>
