@@ -27,7 +27,7 @@ $(function () {
     "serverSide": true,
     "searching": false,
     "ajax": {
-      "url": "ajax/dades",
+      "url": "ajax/contact",
       "type": 'post',
       "data": {
         "_token": $("meta[name='csrf-token']").attr("content")
@@ -38,6 +38,7 @@ $(function () {
       {"data":"name"},
       {"data":"phone_number"},
       {"data":"mail"},
+      {"data":"subject"},
       {"data":"content"},
       {"data":"date"}
     ],
@@ -45,8 +46,6 @@ $(function () {
       $(nRow).attr('id', 'tr-'+aData['id_contact']);
       $(nRow).attr('data-id', +aData['id_contact']);
       $(nRow).attr('class', 'item-contact');
-      $(nRow).attr('data-toggle', 'modal');
-      $(nRow).attr('data-target', '#contact-modal');
     },
     "aoColumnDefs": [
       { 'bVisible': false, 'bSortable': false, 'aTargets': [ 0 ] }
@@ -69,4 +68,76 @@ $(function () {
     "pageLength": 10
   });
   $('#contact-table').attr('style', 'cursor: pointer');
+
+  // Show contact item
+  $(document).on('click','.item-contact', function(){
+    id = $(this).data('id');
+    
+    var data = new FormData();
+    data.append('id',id);
+    data.append('_token',$("meta[name='csrf-token']").attr("content"));
+
+    $.ajax({
+      url: "ajax/contact/item",
+      type: 'post',
+      data: data,
+      mimeType:"multipart/form-data",
+      contentType: false,
+      cache: false,
+      processData:false,
+      success: function(data, textStatus, jqXHR)
+      {
+        array = $.parseJSON(data);
+        $('#name').html(array.data[0].name);
+        $('#content').html(array.data[0].content);
+        $('#mail').html(array.data[0].mail);
+        $('#date').html(array.data[0].date);
+        $('#subject').html(array.data[0].subject);
+        $('#phone_number').html(array.data[0].phone_number);
+        $('#delete-contact').data( "id", array.data[0].id_contact );
+      }
+    });
+    $('#contact-modal').modal('show');
+  });
+
+  // Delete contact item
+  $(document).on('click','#delete-contact', function(){
+    swal({
+      title: "Estàs segur?",
+      text: "Aquest contacte s'eliminarà completament.",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+      closeOnConfirm: false,
+      closeOnCancel: false
+    },
+    function (isConfirm) {
+      if (isConfirm) {
+        id = $("#delete-contact").data('id');
+
+        var data = new FormData();
+        data.append('id',id);
+        data.append('_token',$("meta[name='csrf-token']").attr("content"));
+
+        $.ajax({
+          type: 'POST',
+          url: 'ajax/contact/delete',
+          data: data,
+          mimeType:"multipart/form-data",
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function (data) {
+            swal("Eliminar", "Eliminat correctament", "success");
+          }
+        });
+      } else {
+        swal("Cancel·lat", "No s'ha fet cap acció.", "error");
+      }
+      $('#contact-table').DataTable().ajax.reload();
+      $('#contact-modal').modal('hide');
+    });
+  });
 });

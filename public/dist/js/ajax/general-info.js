@@ -78,9 +78,9 @@ $(function () {
       {"data":"url"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-      $(nRow).attr('id', 'tr-'+aData['id_contact']);
-      $(nRow).attr('data-id', +aData['id_contact']);
-      $(nRow).attr('class', 'item_contact');
+      $(nRow).attr('id', 'tr-'+aData['id_socialmedia']);
+      $(nRow).attr('data-id', +aData['id_socialmedia']);
+      $(nRow).attr('class', 'item-socialmedia');
       $(nRow).attr('data-toggle', 'modal');
       $(nRow).attr('data-target', '#contact-modal');
     },
@@ -126,9 +126,9 @@ $(function () {
       {"data":"content"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-      $(nRow).attr('id', 'tr-'+aData['id_contact']);
-      $(nRow).attr('data-id', +aData['id_contact']);
-      $(nRow).attr('class', 'item_contact');
+      $(nRow).attr('id', 'tr-'+aData['id_info']);
+      $(nRow).attr('data-id', +aData['id_info']);
+      $(nRow).attr('class', 'item-genealinfo');
       $(nRow).attr('data-toggle', 'modal');
       $(nRow).attr('data-target', '#contact-modal');
     },
@@ -175,9 +175,9 @@ $(function () {
       {"data":"image"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-      $(nRow).attr('id', 'tr-'+aData['id_contact']);
-      $(nRow).attr('data-id', +aData['id_contact']);
-      $(nRow).attr('class', 'item_contact');
+      $(nRow).attr('id', 'tr-'+aData['id_slide']);
+      $(nRow).attr('data-id', +aData['id_slide']);
+      $(nRow).attr('class', 'item-slide');
       $(nRow).attr('data-toggle', 'modal');
       $(nRow).attr('data-target', '#slide-modal');
     },

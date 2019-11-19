@@ -20,6 +20,8 @@ class AjaxController extends Controller
         }elseif($request['order'][0]['column'] == 3){
             $orderBy = 'mail';	
         }elseif($request['order'][0]['column'] == 4){
+            $orderBy = 'subject';	
+        }elseif($request['order'][0]['column'] == 5){
             $orderBy = 'content';
 		}else{
 			$orderBy = 'date';	
@@ -31,7 +33,7 @@ class AjaxController extends Controller
 		}
 
         $items = DB::table('contact_items')
-                ->select(['id_contact', 'name', 'phone_number', 'mail', 'content', 'date'])
+                ->select(['id_contact', 'name', 'phone_number', 'mail', 'subject', 'content', 'date'])
                 ->orderBy($orderBy, $direction)
                 ->skip($request['start'])->take($request['length'])
                 ->get();

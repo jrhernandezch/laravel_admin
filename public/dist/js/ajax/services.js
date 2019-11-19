@@ -29,8 +29,8 @@ $(function () {
       {"data":"image"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-      $(nRow).attr('id', 'tr-'+aData['id_contact']);
-      $(nRow).attr('data-id', +aData['id_contact']);
+      $(nRow).attr('id', 'tr-'+aData['id_service']);
+      $(nRow).attr('data-id', +aData['id_service']);
       $(nRow).attr('class', 'item-service');
       $(nRow).attr('data-toggle', 'modal');
       $(nRow).attr('data-target', '#service-modal');

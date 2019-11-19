@@ -39,12 +39,20 @@ Route::post('/ajax/clients-info', 'AjaxController@getAjaxClients')->middleware('
 /* CONTACT
 ************************/
 Route::get('/contact', 'contactController@getAllContacts');
-Route::post('/ajax/dades', 'AjaxController@getAjaxContact')->middleware('only.ajax');
+
+Route::post('/ajax/contact', 'AjaxController@getAjaxContact')->middleware('only.ajax');
+Route::post('/ajax/contact/item', 'contactController@getAjaxContactItem')->middleware('only.ajax');
+Route::post('/ajax/contact/delete', 'contactController@getAjaxDeleteContact')->middleware('only.ajax');
 
 /* BLOG
 ************************/
 Route::get('/blog', 'blogController@getAllBlog');
+
 Route::post('/ajax/blog', 'AjaxController@getAjaxBlog')->middleware('only.ajax');
+Route::post('/ajax/blog/new', 'blogController@getAjaxNewBlog')->middleware('only.ajax');
+Route::post('/ajax/blog/item', 'blogController@getAjaxBlogItem')->middleware('only.ajax');
+Route::post('/ajax/blog/update', 'blogController@getAjaxUpdateBlog')->middleware('only.ajax');
+Route::post('/ajax/blog/delete', 'blogController@getAjaxDeleteBlog')->middleware('only.ajax');
 
 /* AJAX
 ************************/
