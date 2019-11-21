@@ -33,8 +33,20 @@ Route::get('/team', 'aboutController@getTeam');
 Route::get('/clients', 'aboutController@getClients');
 
 Route::post('/ajax/company-info', 'AjaxController@getAjaxCompany')->middleware('only.ajax');
+Route::post('/ajax/company/item', 'aboutController@getAjaxCompanyItem')->middleware('only.ajax');
+Route::post('/ajax/company/update', 'aboutController@getAjaxUpdateCompany')->middleware('only.ajax');
+
 Route::post('/ajax/team-info', 'AjaxController@getAjaxTeam')->middleware('only.ajax');
+Route::post('/ajax/team/new', 'aboutController@getAjaxNewTeam')->middleware('only.ajax');
+Route::post('/ajax/team/item', 'aboutController@getAjaxTeamItem')->middleware('only.ajax');
+Route::post('/ajax/team/update', 'aboutController@getAjaxUpdateTeam')->middleware('only.ajax');
+Route::post('/ajax/team/delete', 'aboutController@getAjaxDeleteTeam')->middleware('only.ajax');
+
 Route::post('/ajax/clients-info', 'AjaxController@getAjaxClients')->middleware('only.ajax');
+Route::post('/ajax/clients/new', 'aboutController@getAjaxNewClients')->middleware('only.ajax');
+Route::post('/ajax/clients/item', 'aboutController@getAjaxClientsItem')->middleware('only.ajax');
+Route::post('/ajax/clients/update', 'aboutController@getAjaxUpdateClients')->middleware('only.ajax');
+Route::post('/ajax/clients/delete', 'aboutController@getAjaxDeleteClients')->middleware('only.ajax');
 
 /* CONTACT
 ************************/

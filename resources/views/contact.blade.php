@@ -39,6 +39,7 @@
                   <th>Mail</th>
                   <th>Subject</th>
                   <th>Content</th>
+                  <th>Seen</th>
                   <th>Date</th>
                 </tr>
                 </thead>
@@ -50,6 +51,7 @@
                     <th>Mail</th>
                     <th>Subject</th>
                     <th>Content</th>
+                    <th>Seen</th>
                     <th>Date</th>
                   </tr>
                 </tfoot>

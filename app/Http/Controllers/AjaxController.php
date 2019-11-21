@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\DB; // Para que funcione la BD
 
 class AjaxController extends Controller
 {
-    /* HOME 
-    ***********************/
     // Get contact content
     public function getAjaxContact(Request $request){
         $orderBy = "date";
@@ -33,7 +31,7 @@ class AjaxController extends Controller
 		}
 
         $items = DB::table('contact_items')
-                ->select(['id_contact', 'name', 'phone_number', 'mail', 'subject', 'content', 'date'])
+                ->select(['id_contact', 'name', 'phone_number', 'mail', 'subject', 'content', 'seen', 'date'])
                 ->orderBy($orderBy, $direction)
                 ->skip($request['start'])->take($request['length'])
                 ->get();

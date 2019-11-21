@@ -35,7 +35,7 @@ class blogController extends Controller
         ]);
     }
 
-    // Delete blog item
+    // Update blog item
     public function getAjaxUpdateBlog(Request $request){
         $blog = new Blog();
                 
@@ -45,7 +45,7 @@ class blogController extends Controller
         ]);
     }
 
-    // Delete blog item
+    // Update blog item
     public function getAjaxDeleteBlog(Request $request){
         $blog = new Blog();
                 

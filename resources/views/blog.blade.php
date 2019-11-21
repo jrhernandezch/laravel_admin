@@ -81,7 +81,6 @@
           </button>
         </div>
         <div class="modal-body">
-          
           <div class="row">
             <div class="col-12">
               <div class="form-group">
@@ -113,7 +112,6 @@
               </div>
             </div>
           </div>
-
         </div>
         <div class="modal-footer">
           <div class="justify-content-start">
@@ -135,25 +133,22 @@
 @endsection
 
 @section('css')
-<!-- summernote editor -->
-<link rel="stylesheet" href="{!! asset('plugins/summernote/summernote-bs4.css') !!}">
-<!-- DataTables -->
-<link rel="stylesheet" href="{!! asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') !!}">
-<!-- Sweetalert Css -->
-<link href="{!! asset('plugins/sweetalert/sweetalert.css') !!}" rel="stylesheet" />
+  <!-- summernote editor -->
+  <link rel="stylesheet" href="{!! asset('plugins/summernote/summernote-bs4.css') !!}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{!! asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') !!}">
+  <!-- Sweetalert Css -->
+  <link href="{!! asset('plugins/sweetalert/sweetalert.css') !!}" rel="stylesheet" />
 @endsection
 
 @section('script')
-<!-- Summernote editor -->
-<script src="{!! asset('plugins/summernote/summernote-bs4.min.js') !!}"></script>
-
-<!-- DataTables -->
-<script src="{!! asset('plugins/datatables/jquery.dataTables.js') !!}"></script>
-<script src="{!! asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') !!}"></script>
-
-<!-- Sweet Alert Plugin Js -->
-<script src="{!! asset('plugins/sweetalert/sweetalert.min.js') !!}"></script>
-
-<!-- data -->
-<script src="{!! asset('dist/js/ajax/blog.js') !!}"></script>
+  <!-- Summernote editor -->
+  <script src="{!! asset('plugins/summernote/summernote-bs4.min.js') !!}"></script>
+  <!-- DataTables -->
+  <script src="{!! asset('plugins/datatables/jquery.dataTables.js') !!}"></script>
+  <script src="{!! asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') !!}"></script>
+  <!-- Sweet Alert Plugin Js -->
+  <script src="{!! asset('plugins/sweetalert/sweetalert.min.js') !!}"></script>
+  <!-- data -->
+  <script src="{!! asset('dist/js/ajax/blog.js') !!}"></script>
 @endsection

@@ -40,6 +40,7 @@ $(function () {
       {"data":"mail"},
       {"data":"subject"},
       {"data":"content"},
+      {"data":"seen"},
       {"data":"date"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
@@ -98,6 +99,7 @@ $(function () {
       }
     });
     $('#contact-modal').modal('show');
+    $('#contact-table').DataTable().ajax.reload();
   });
 
   // Delete contact item

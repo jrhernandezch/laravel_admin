@@ -18,6 +18,10 @@ class Contact extends Model
 
     // Get contact item
     public function getContactItem($request){
+        DB::table('contact_items')
+            ->where('id_contact', '=', $request["id"])
+            ->update(['seen' => 'yes']);
+            
         $items = DB::table('contact_items')
                 ->select(['id_contact', 'name', 'phone_number', 'mail', 'subject', 'content', 'date'])
                 ->where('id_contact', '=', $request['id'])
