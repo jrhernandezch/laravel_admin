@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Blog;
+use App\Contact;
 
 class blogController extends Controller
 {
     // Return data
     public function getAllBlog(){
         $blog = new Blog();
+        $contact = new Contact();
 
     	return view('blog')
-                ->with('data',$blog->getAllBlog());
+                ->with('data',$blog->getAllBlog())
+                ->with('totalContacts', $contact->getCountContacts());
     }
 
     // Get blog item

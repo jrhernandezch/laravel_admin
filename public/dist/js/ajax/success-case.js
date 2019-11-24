@@ -1,4 +1,12 @@
 $(function () {
+  // Initialize 
+  // Editor Summernote
+  $('.textarea').summernote({
+    placeholder: "Contingut del cas d'èxit",
+    tabsize: 2,
+    height: 150
+  });
+
   // Active menú
   $('#home-open').addClass('menu-open');
   $('#success-case').addClass('active');
@@ -23,19 +31,15 @@ $(function () {
       }
     },
     "columns":[
-      {"data":"id_service"},
-      {"data":"name"},
-      {"data":"phone_number"},
-      {"data":"mail"},
+      {"data":"id_success"},
+      {"data":"title"},
       {"data":"content"},
-      {"data":"date"}
+      {"data":"image"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-      $(nRow).attr('id', 'tr-'+aData['id_service']);
-      $(nRow).attr('data-id', +aData['id_service']);
+      $(nRow).attr('id', 'tr-'+aData['id_success']);
+      $(nRow).attr('data-id', +aData['id_success']);
       $(nRow).attr('class', 'item-success');
-      $(nRow).attr('data-toggle', 'modal');
-      $(nRow).attr('data-target', '#success-modal');
     },
     "aoColumnDefs": [
       { 'bVisible': false, 'bSortable': false, 'aTargets': [ 0 ] }
@@ -57,7 +61,154 @@ $(function () {
     "order": [[ 1, "asc" ]],
     "pageLength": 10
   });
-
-  //$("#successcase-table tr").addClass('cursor', 'pointer');
   $('#successcase-table').attr('style', 'cursor: pointer');
+
+  // Show success item
+  $(document).on('click','.item-success', function(){
+    activeBtn("update");
+    id = $(this).data('id');
+    
+    var data = new FormData();
+    data.append('id',id);
+    data.append('_token',$("meta[name='csrf-token']").attr("content"));
+
+    $.ajax({
+      url: "ajax/success/item",
+      type: 'post',
+      data: data,
+      mimeType:"multipart/form-data",
+      contentType: false,
+      cache: false,
+      processData:false,
+      success: function(data, textStatus, jqXHR)
+      {
+        array = $.parseJSON(data);
+        $('#inputTitle').val(array.data[0].title);
+        $('#inputContent').summernote('code', array.data[0].content);
+        $('#btnDelete').data( "id", array.data[0].id_success );
+        $('#btnModify').data( "id", array.data[0].id_success );
+        $('#btnUpload').data( "id", array.data[0].id_success );
+      }
+    });
+    $('#success-modal').modal('show');
+  });
+
+  // Modify success item
+  $(document).on('click','#btnModify', function(){
+    id = $('#btnModify').data('id');
+    
+    var data = new FormData();
+    data.append('id',id);
+    data.append('title',$('#inputTitle').val());
+    data.append('content',$('#inputContent').summernote('code'));
+    data.append('_token',$("meta[name='csrf-token']").attr("content"));
+
+    $.ajax({
+      url: "ajax/success/update",
+      type: 'post',
+      data: data,
+      mimeType:"multipart/form-data",
+      contentType: false,
+      cache: false,
+      processData:false,
+      success: function(data, textStatus, jqXHR)
+      {
+        array = $.parseJSON(data);
+        $('#successcase-table').DataTable().ajax.reload();
+        swal("Modificació", "Modificat correctament", "success");        
+      }
+    });
+    $('#success-modal').modal('hide');
+  });
+
+  // Delete success item
+  $(document).on('click','#btnDelete', function(){
+    swal({
+      title: "Estàs segur?",
+      text: "Aquest cas d'èxit s'eliminarà completament.",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+      closeOnConfirm: false,
+      closeOnCancel: false
+    },
+    function (isConfirm) {
+      if (isConfirm) {
+        id = $("#btnDelete").data('id');
+
+        var data = new FormData();
+        data.append('id',id);
+        data.append('_token',$("meta[name='csrf-token']").attr("content"));
+
+        $.ajax({
+          type: 'POST',
+          url: 'ajax/success/delete',
+          data: data,
+          mimeType:"multipart/form-data",
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function (data) {
+            swal("Eliminar", "Eliminat correctament", "success");
+          }
+        });
+      } else {
+        swal("Cancel·lat", "No s'ha fet cap acció.", "error");
+      }
+      $('#successcase-table').DataTable().ajax.reload();
+      $('#success-modal').modal('hide');
+    });
+  });
+
+  // New success item
+  $(document).on('click','#new-case', function(){
+    activeBtn("upload");
+    $('#inputTitle').val("");
+    $('#inputContent').summernote('code', "");
+    $('#success-modal').modal('show');
+  });
+
+  // Send new success case
+  $(document).on('click','#btnSend', function(){   
+    var data = new FormData();
+    data.append('title',$('#inputTitle').val());
+    data.append('content',$('#inputContent').summernote('code'));
+    data.append('_token',$("meta[name='csrf-token']").attr("content"));
+
+    $.ajax({
+      url: "ajax/success/new",
+      type: 'post',
+      data: data,
+      mimeType:"multipart/form-data",
+      contentType: false,
+      cache: false,
+      processData:false,
+      success: function(data, textStatus, jqXHR)
+      {
+        array = $.parseJSON(data);
+        if(array.data == 1){
+          swal("Nou cas d'èxit", "Afegit correctament", "success");
+        }
+      }
+    });
+    activeBtn("update");
+    $('#successcase-table').DataTable().ajax.reload();
+    $('#success-modal').modal('hide');
+  });
+
+  function activeBtn(action) {
+    if(action == "upload"){
+      $('#btnSend').css('display', 'inline-block');
+      $('#btnDelete').css('display', 'none');
+      $('#btnModify').css('display', 'none');
+      $('#btnUpload').css('display', 'none');
+    }else{
+      $('#btnDelete').css('display', 'inline-block');
+      $('#btnModify').css('display', 'inline-block');
+      $('#btnUpload').css('display', 'inline-block');
+      $('#btnSend').css('display', 'none');
+    }
+  }
 });

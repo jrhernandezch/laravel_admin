@@ -1,8 +1,8 @@
 $(function () {
   // Initialize 
   // Editor Summernote
-  $('.textarea_info').summernote({
-    placeholder: 'Contingut de la informació',
+  $('.textarea_slide').summernote({
+    placeholder: 'Descripció del slide',
     tabsize: 2,
     height: 150
   });
@@ -18,34 +18,34 @@ $(function () {
     }
   });
 
-  /* General info table
+  /* Slide table
   *****************************/
-  $('#general-info-table').DataTable( {
+  $('#slide-table').DataTable( {
     "ordering": false,
     "info":     false,
     "processing": true,
     "serverSide": true,
     "searching": false,
     "ajax": {
-      "url": "ajax/general-info",
+      "url": "ajax/slide-info",
       "type": 'post',
       "data": {
         "_token": $("meta[name='csrf-token']").attr("content")
       }
     },
     "columns":[
-      {"data":"id_info"},
-      {"data":"name"},
+      {"data":"id_slide"},
+      {"data":"title"},
       {"data":"content"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-      $(nRow).attr('id', 'tr-'+aData['id_info']);
-      $(nRow).attr('data-id', +aData['id_info']);
-      $(nRow).attr('class', 'item-generalinfo');
+      $(nRow).attr('id', 'tr-'+aData['id_slide']);
+      $(nRow).attr('data-id', +aData['id_slide']);
+      $(nRow).attr('class', 'item-slide');
     },
     "aoColumnDefs": [
       { 'bVisible': false, 'bSortable': false, 'aTargets': [ 0 ] },
-      { 'aTargets': [ 1 ], 'width': '25%' }
+      { 'aTargets': [ 1 ], 'width': '30%' }
     ],
     "language": {
       "lengthMenu": "Mostrar _MENU_ recepcions per pàgina. ",
@@ -64,11 +64,11 @@ $(function () {
     "order": [[ 1, "asc" ]],
     "pageLength": 10
   });
-  $('#general-info-table').attr('style', 'cursor: pointer');
-  $('#general-info-table_paginate').hide();
+  $('#slide-table').attr('style', 'cursor: pointer');
+  $('#slide-table_paginate').hide();
 
-  // Show General info item
-  $(document).on('click','.item-generalinfo', function(){
+  // Show slide item
+  $(document).on('click','.item-slide', function(){
     id = $(this).data('id');
     
     var data = new FormData();
@@ -76,7 +76,7 @@ $(function () {
     data.append('_token',$("meta[name='csrf-token']").attr("content"));
 
     $.ajax({
-      url: "ajax/general-info/item",
+      url: "ajax/slide/item",
       type: 'post',
       data: data,
       mimeType:"multipart/form-data",
@@ -86,24 +86,27 @@ $(function () {
       success: function(data, textStatus, jqXHR)
       {
         array = $.parseJSON(data);
-        $('#inputContent_info').summernote('code', array.data[0].content);
-        $('#btnModify_info').data( "id", array.data[0].id_info );
+        $('#inputTitle_slide').val(array.data[0].title);
+        $('#inputContent_slide').summernote('code', array.data[0].content);
+        $('#btnModify_slide').data( "id", array.data[0].id_slide );
+        $('#btnUpload_slide').data( "id", array.data[0].id_slide );
       }
     });
-    $('#info-modal').modal('show');
+    $('#slide-modal').modal('show');
   });
 
-  // Modify General info item
-  $(document).on('click','#btnModify_info', function(){
-    id = $('#btnModify_info').data('id');
+  // Modify slide item
+  $(document).on('click','#btnModify_slide', function(){
+    id = $('#btnModify_slide').data('id');
     
     var data = new FormData();
     data.append('id',id);
-    data.append('content',$('#inputContent_info').summernote('code'));
+    data.append('title',$('#inputTitle_slide').val());
+    data.append('content',$('#inputContent_slide').summernote('code'));
     data.append('_token',$("meta[name='csrf-token']").attr("content"));
 
     $.ajax({
-      url: "ajax/general-info/update",
+      url: "ajax/slide/update",
       type: 'post',
       data: data,
       mimeType:"multipart/form-data",
@@ -113,10 +116,10 @@ $(function () {
       success: function(data, textStatus, jqXHR)
       {
         array = $.parseJSON(data);
-        $('#general-info-table').DataTable().ajax.reload();
+        $('#slide-table').DataTable().ajax.reload();
         swal("Modificació", "Modificat correctament", "success");        
       }
     });
-    $('#info-modal').modal('hide');
+    $('#slide-modal').modal('hide');
   });
 });

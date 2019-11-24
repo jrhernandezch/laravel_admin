@@ -28,9 +28,8 @@
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>1</h3>
-
-              <p>Nou contacte</p>
+              <h3><span id="totalContacts">{!! $totalContacts !!}</span></h3>
+              <p>Nous contactes</p>
             </div>
             <div class="icon">
               <i class="ion ion-email"></i>
@@ -42,8 +41,7 @@
           <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>5<sup style="font-size: 20px"></sup></h3>
-
+              <h3>0<sup style="font-size: 20px"></sup></h3>
               <p>Visitants</p>
             </div>
             <div class="icon">

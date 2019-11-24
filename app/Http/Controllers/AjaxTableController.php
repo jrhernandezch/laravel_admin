@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // Para que funcione la BD
 
-class AjaxController extends Controller
+class AjaxTableController extends Controller
 {
-    // Get contact content
-    public function getAjaxContact(Request $request){
+    // Get contacts table content
+    public function getAjaxContactTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -31,7 +31,7 @@ class AjaxController extends Controller
 		}
 
         $items = DB::table('contact_items')
-                ->select(['id_contact', 'name', 'phone_number', 'mail', 'subject', 'content', 'seen', 'date'])
+                ->select(['id_contact', 'name', 'phone_number', 'mail', 'subject', 'content', 'checked', 'date'])
                 ->orderBy($orderBy, $direction)
                 ->skip($request['start'])->take($request['length'])
                 ->get();
@@ -46,7 +46,7 @@ class AjaxController extends Controller
     }
 
     // Get blog content
-    public function getAjaxBlog(Request $request){
+    public function getAjaxBlogTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -84,7 +84,7 @@ class AjaxController extends Controller
     }
 
     // Get information icons content
-    public function getAjaxIconsInfo(Request $request){
+    public function getAjaxIconsInfoTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -118,7 +118,7 @@ class AjaxController extends Controller
     }
 
     // Get information social media content
-    public function getAjaxSocialMediaInfo(Request $request){
+    public function getAjaxSocialMediaInfoTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -150,7 +150,7 @@ class AjaxController extends Controller
     }
 
     // Get services content
-    public function getAjaxServices(Request $request){
+    public function getAjaxServicesTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -184,18 +184,39 @@ class AjaxController extends Controller
     }
 
     // Get success case content
-    public function getAjaxSuccessCase(Request $request){
+    public function getAjaxSuccessCasesTable(Request $request){
+        $orderBy = "date";
+
+        if($request['order'][0]['column'] == 1){
+			$orderBy = 'title';	
+		}elseif($request['order'][0]['column'] == 2){
+            $orderBy = 'content';
+		}else{
+			$orderBy = 'date';	
+        }
+        
+        $direction = 'DESC';
+		if($request['order'][0]['dir'] == 'asc'){
+			$direction = 'ASC';
+        }
+        
+        $items = DB::table('success_projects')
+                ->select(['id_success', 'title', 'content', 'image'])
+                ->orderBy($orderBy, $direction)
+                ->skip($request['start'])->take($request['length'])
+                ->get();
+
         return response()->json([
-            'success'=>'Processat amb èxit ', 
-            'data'=>'', 
-            'draw'=>6, 
-            'recordsTotal'=>0,
-            'recordsFiltered'=>0,
+            'success'=>'Processat amb èxit ',
+            'data'=>$items, 
+            'draw'=>$request['draw'],  
+            'recordsTotal'=>$items->count(),
+            'recordsFiltered'=>$items->count(),
         ]);
     }
     
     // Get general info content
-    public function getAjaxGeneralInfo(Request $request){
+    public function getAjaxGeneralInfoTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -227,7 +248,7 @@ class AjaxController extends Controller
     }
 
     // Get slide info content
-    public function getAjaxSlideInfo(Request $request){
+    public function getAjaxSlideInfoTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -263,7 +284,7 @@ class AjaxController extends Controller
     /* ABOUT US 
     ***********************/
     // Get company info content
-    public function getAjaxCompany(Request $request){
+    public function getAjaxCompanyTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -297,7 +318,7 @@ class AjaxController extends Controller
     }
 
     // Get team info content
-    public function getAjaxTeam(Request $request){
+    public function getAjaxTeamTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){
@@ -335,7 +356,7 @@ class AjaxController extends Controller
     }
 
     // Get clients info content
-    public function getAjaxClients(Request $request){
+    public function getAjaxClientsTable(Request $request){
         $orderBy = "date";
 
         if($request['order'][0]['column'] == 1){

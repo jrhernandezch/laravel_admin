@@ -39,7 +39,7 @@
                   <th>Mail</th>
                   <th>Subject</th>
                   <th>Content</th>
-                  <th>Seen</th>
+                  <th>Checked</th>
                   <th>Date</th>
                 </tr>
                 </thead>
@@ -51,7 +51,7 @@
                     <th>Mail</th>
                     <th>Subject</th>
                     <th>Content</th>
-                    <th>Seen</th>
+                    <th>Checked</th>
                     <th>Date</th>
                   </tr>
                 </tfoot>
@@ -109,7 +109,6 @@
 @section('css')
   <!-- DataTables -->
   <link rel="stylesheet" href="{!! asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') !!}">
-
   <!-- Sweetalert Css -->
   <link href="{!! asset('plugins/sweetalert/sweetalert.css') !!}" rel="stylesheet" />
 @endsection
@@ -118,10 +117,8 @@
   <!-- DataTables -->
   <script src="{!! asset('plugins/datatables/jquery.dataTables.js') !!}"></script>
   <script src="{!! asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') !!}"></script>
-
   <!-- Sweet Alert Plugin Js -->
   <script src="{!! asset('plugins/sweetalert/sweetalert.min.js') !!}"></script>
-
   <!-- data -->
   <script src="{!! asset('dist/js/ajax/contact.js') !!}"></script>
 @endsection

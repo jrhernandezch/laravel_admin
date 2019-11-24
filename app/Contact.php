@@ -20,7 +20,7 @@ class Contact extends Model
     public function getContactItem($request){
         DB::table('contact_items')
             ->where('id_contact', '=', $request["id"])
-            ->update(['seen' => 'yes']);
+            ->update(['checked' => 'yes']);
             
         $items = DB::table('contact_items')
                 ->select(['id_contact', 'name', 'phone_number', 'mail', 'subject', 'content', 'date'])
@@ -37,5 +37,14 @@ class Contact extends Model
                 ->delete();
 
         return $items;
+    }
+
+    // Return the contacts who has not read
+    public function getCountContacts(){
+        $total = DB::table('contact_items')
+                ->where('checked', '=', 'no')
+                ->count();
+
+        return $total;
     }
 }

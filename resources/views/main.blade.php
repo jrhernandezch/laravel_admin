@@ -43,14 +43,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">1</span>
+            @if ($totalContacts > 0)
+              <span class="badge badge-warning navbar-badge">1</span>
+            @endif
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">1 Notificatió</span>
+            <span class="dropdown-header">Notifications</span>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 1 nou missatge
-              <span class="float-right text-muted text-sm">Ara</span>
+              @if ($totalContacts > 0)
+                <i class="fas fa-envelope mr-2"></i> 1 nou/s contacte/s
+                <span class="float-right text-muted text-sm">Ara</span>
+              @else
+                <i class="fas fa-envelope mr-2"></i> No hi ha cap contacte
+              @endif
             </a>
           </div>
         </li>
@@ -168,7 +174,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="nav-item">
               <a href="{{ url('/contact') }}" class="nav-link" id="contact">
                 <i class="nav-icon fas fa-mail-bulk"></i>
-                <p>Contacte <span class="right badge badge-danger">Nous</span></p>
+                <p>Contacte 
+                  @if ($totalContacts > 0)
+                    <span class="right badge badge-danger">Nous</span>
+                  @endif
+                </p>
               </a>
             </li>
             <!-- Contact -->

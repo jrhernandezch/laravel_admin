@@ -1,12 +1,4 @@
 $(function () {
-  // Initialize 
-  // Editor Summernote
-  $('.textarea_info').summernote({
-    placeholder: 'Contingut de la informació',
-    tabsize: 2,
-    height: 150
-  });
-
   // Active menú
   $('#home-open').addClass('menu-open');
   $('#general-info').addClass('active');
@@ -18,34 +10,34 @@ $(function () {
     }
   });
 
-  /* General info table
+  /* Social Media table
   *****************************/
-  $('#general-info-table').DataTable( {
+  $('#socialmedia-table').DataTable( {
     "ordering": false,
-    "info":     false,
+    "info": false,
     "processing": true,
     "serverSide": true,
     "searching": false,
     "ajax": {
-      "url": "ajax/general-info",
+      "url": "ajax/social-media",
       "type": 'post',
       "data": {
         "_token": $("meta[name='csrf-token']").attr("content")
       }
     },
     "columns":[
-      {"data":"id_info"},
+      {"data":"id_socialmedia"},
       {"data":"name"},
-      {"data":"content"}
+      {"data":"url"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-      $(nRow).attr('id', 'tr-'+aData['id_info']);
-      $(nRow).attr('data-id', +aData['id_info']);
-      $(nRow).attr('class', 'item-generalinfo');
+      $(nRow).attr('id', 'tr-'+aData['id_socialmedia']);
+      $(nRow).attr('data-id', +aData['id_socialmedia']);
+      $(nRow).attr('class', 'item-socialmedia');
     },
     "aoColumnDefs": [
       { 'bVisible': false, 'bSortable': false, 'aTargets': [ 0 ] },
-      { 'aTargets': [ 1 ], 'width': '25%' }
+      { 'aTargets': [ 1 ], 'width': '10%' }
     ],
     "language": {
       "lengthMenu": "Mostrar _MENU_ recepcions per pàgina. ",
@@ -62,13 +54,12 @@ $(function () {
       },
     },
     "order": [[ 1, "asc" ]],
-    "pageLength": 10
   });
-  $('#general-info-table').attr('style', 'cursor: pointer');
-  $('#general-info-table_paginate').hide();
+  $('#socialmedia-table').attr('style', 'cursor: pointer');
+  $('#socialmedia-table_paginate').hide();
 
-  // Show General info item
-  $(document).on('click','.item-generalinfo', function(){
+  // Show social media item
+  $(document).on('click','.item-socialmedia', function(){
     id = $(this).data('id');
     
     var data = new FormData();
@@ -76,7 +67,7 @@ $(function () {
     data.append('_token',$("meta[name='csrf-token']").attr("content"));
 
     $.ajax({
-      url: "ajax/general-info/item",
+      url: "ajax/social-media/item",
       type: 'post',
       data: data,
       mimeType:"multipart/form-data",
@@ -86,24 +77,24 @@ $(function () {
       success: function(data, textStatus, jqXHR)
       {
         array = $.parseJSON(data);
-        $('#inputContent_info').summernote('code', array.data[0].content);
-        $('#btnModify_info').data( "id", array.data[0].id_info );
+        $('#inputURL_smedia').val(array.data[0].url);
+        $('#btnModify_smedia').data( "id", array.data[0].id_socialmedia );
       }
     });
-    $('#info-modal').modal('show');
+    $('#socialmedia-modal').modal('show');
   });
 
-  // Modify General info item
-  $(document).on('click','#btnModify_info', function(){
-    id = $('#btnModify_info').data('id');
+  // Modify social media item
+  $(document).on('click','#btnModify_smedia', function(){
+    id = $('#btnModify_smedia').data('id');
     
     var data = new FormData();
     data.append('id',id);
-    data.append('content',$('#inputContent_info').summernote('code'));
+    data.append('url',$('#inputURL_smedia').val());
     data.append('_token',$("meta[name='csrf-token']").attr("content"));
 
     $.ajax({
-      url: "ajax/general-info/update",
+      url: "ajax/social-media/update",
       type: 'post',
       data: data,
       mimeType:"multipart/form-data",
@@ -113,10 +104,10 @@ $(function () {
       success: function(data, textStatus, jqXHR)
       {
         array = $.parseJSON(data);
-        $('#general-info-table').DataTable().ajax.reload();
+        $('#socialmedia-table').DataTable().ajax.reload();
         swal("Modificació", "Modificat correctament", "success");        
       }
     });
-    $('#info-modal').modal('hide');
+    $('#socialmedia-modal').modal('hide');
   });
 });

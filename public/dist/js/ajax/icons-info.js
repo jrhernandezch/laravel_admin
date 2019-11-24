@@ -1,7 +1,7 @@
 $(function () {
   // Initialize 
   // Editor Summernote
-  $('.textarea_info').summernote({
+  $('.textarea_icons').summernote({
     placeholder: 'Contingut de la informació',
     tabsize: 2,
     height: 150
@@ -18,34 +18,33 @@ $(function () {
     }
   });
 
-  /* General info table
+  /* Icons table
   *****************************/
-  $('#general-info-table').DataTable( {
+  $('#icons-table').DataTable( {
     "ordering": false,
     "info":     false,
     "processing": true,
     "serverSide": true,
     "searching": false,
     "ajax": {
-      "url": "ajax/general-info",
+      "url": "ajax/icons-info",
       "type": 'post',
       "data": {
         "_token": $("meta[name='csrf-token']").attr("content")
       }
     },
     "columns":[
-      {"data":"id_info"},
-      {"data":"name"},
+      {"data":"id_icon"},
+      {"data":"title"},
       {"data":"content"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-      $(nRow).attr('id', 'tr-'+aData['id_info']);
-      $(nRow).attr('data-id', +aData['id_info']);
-      $(nRow).attr('class', 'item-generalinfo');
+      $(nRow).attr('id', 'tr-'+aData['id_icon']);
+      $(nRow).attr('data-id', +aData['id_icon']);
+      $(nRow).attr('class', 'item-icons');
     },
     "aoColumnDefs": [
-      { 'bVisible': false, 'bSortable': false, 'aTargets': [ 0 ] },
-      { 'aTargets': [ 1 ], 'width': '25%' }
+      { 'bVisible': false, 'bSortable': false, 'aTargets': [ 0 ] }
     ],
     "language": {
       "lengthMenu": "Mostrar _MENU_ recepcions per pàgina. ",
@@ -64,11 +63,11 @@ $(function () {
     "order": [[ 1, "asc" ]],
     "pageLength": 10
   });
-  $('#general-info-table').attr('style', 'cursor: pointer');
-  $('#general-info-table_paginate').hide();
-
-  // Show General info item
-  $(document).on('click','.item-generalinfo', function(){
+  $('#icons-table').attr('style', 'cursor: pointer');
+  $('#icons-table_paginate').hide();
+  
+  // Show information icons item
+  $(document).on('click','.item-icons', function(){
     id = $(this).data('id');
     
     var data = new FormData();
@@ -76,7 +75,7 @@ $(function () {
     data.append('_token',$("meta[name='csrf-token']").attr("content"));
 
     $.ajax({
-      url: "ajax/general-info/item",
+      url: "ajax/icons-info/item",
       type: 'post',
       data: data,
       mimeType:"multipart/form-data",
@@ -86,24 +85,28 @@ $(function () {
       success: function(data, textStatus, jqXHR)
       {
         array = $.parseJSON(data);
-        $('#inputContent_info').summernote('code', array.data[0].content);
-        $('#btnModify_info').data( "id", array.data[0].id_info );
+        $('#inputTitle_icons').val(array.data[0].title);
+        $('#inputIcon_icons').val(array.data[0].icon);
+        $('#inputContent_icons').summernote('code', array.data[0].content);
+        $('#btnModify_icons').data( "id", array.data[0].id_icon );
       }
     });
-    $('#info-modal').modal('show');
+    $('#icons-modal').modal('show');
   });
 
-  // Modify General info item
-  $(document).on('click','#btnModify_info', function(){
-    id = $('#btnModify_info').data('id');
+  // Modify information icons item
+  $(document).on('click','#btnModify_icons', function(){
+    id = $('#btnModify_icons').data('id');
     
     var data = new FormData();
     data.append('id',id);
-    data.append('content',$('#inputContent_info').summernote('code'));
+    data.append('title',$('#inputTitle_icons').val());
+    data.append('icon',$('#inputIcon_icons').val());
+    data.append('content',$('#inputContent_icons').summernote('code'));
     data.append('_token',$("meta[name='csrf-token']").attr("content"));
 
     $.ajax({
-      url: "ajax/general-info/update",
+      url: "ajax/icons-info/update",
       type: 'post',
       data: data,
       mimeType:"multipart/form-data",
@@ -113,10 +116,10 @@ $(function () {
       success: function(data, textStatus, jqXHR)
       {
         array = $.parseJSON(data);
-        $('#general-info-table').DataTable().ajax.reload();
+        $('#icons-table').DataTable().ajax.reload();
         swal("Modificació", "Modificat correctament", "success");        
       }
     });
-    $('#info-modal').modal('hide');
+    $('#icons-modal').modal('hide');
   });
 });

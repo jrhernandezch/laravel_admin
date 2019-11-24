@@ -40,7 +40,7 @@ $(function () {
       {"data":"mail"},
       {"data":"subject"},
       {"data":"content"},
-      {"data":"seen"},
+      {"data":"checked"},
       {"data":"date"}
     ],
     "fnCreatedRow": function( nRow, aData, iDataIndex ) {

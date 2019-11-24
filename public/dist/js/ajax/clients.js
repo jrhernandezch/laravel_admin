@@ -6,6 +6,7 @@ $(function () {
     tabsize: 2,
     height: 150
   });
+  
   // Btn send
   $('#btnSend').css('display', 'none');
 
@@ -164,7 +165,7 @@ $(function () {
     });
   });
 
-  // New blog item
+  // New client item
   $(document).on('click','#new-client', function(){
     activeBtn("upload");
     $('#inputName').val("");
