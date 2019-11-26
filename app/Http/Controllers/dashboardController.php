@@ -13,7 +13,7 @@ class dashboardController extends Controller
         $dashboard = new Dashboard();
         $contact = new Contact();
 
-    	return view('home')
+    	return view('dashboard')
                 ->with('home', $dashboard->getInfo())
                 ->with('totalContacts', $contact->getCountContacts());
     }
