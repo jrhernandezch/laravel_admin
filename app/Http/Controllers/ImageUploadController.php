@@ -32,7 +32,9 @@ class ImageUploadController extends Controller
 
         $imageName = time().'.'.request()->image->getClientOriginalExtension();
 
-        request()->image->move(public_path('/var/www/laravel_template/public/img/'.$dir), $imageName);
+        $dir_separator = DIRECTORY_SEPARATOR;
+        //request()->image->move(public_path('/var/www/laravel_template/public/img/'.$dir.$dir_separator), $imageName);
+        request()->image->move('/var/www/laravel_template/public/img/'.$dir.'/', $imageName);
 
         $updateImage->updateImage(request()->iditem, $imageName, $dir);
 
