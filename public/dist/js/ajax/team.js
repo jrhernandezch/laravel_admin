@@ -93,7 +93,7 @@ $(function () {
         $('#inputMail').val(array.data[0].mail);
         $('#btnDelete').data( "id", array.data[0].id_team );
         $('#btnModify').data( "id", array.data[0].id_team );
-        $('#btnUpload').data( "id", array.data[0].id_team );
+        $('#iditem').val(id);
       }
     });
     $('#team-modal').modal('show');

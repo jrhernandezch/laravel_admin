@@ -87,7 +87,7 @@ $(function () {
         $('#inputContent').summernote('code', array.data[0].content);
         $('#btnDelete').data( "id", array.data[0].id_success );
         $('#btnModify').data( "id", array.data[0].id_success );
-        $('#btnUpload').data( "id", array.data[0].id_success );
+        $('#iditem').val(id);
       }
     });
     $('#success-modal').modal('show');

@@ -88,7 +88,7 @@ $(function () {
         $('#inputContent').summernote('code', array.data[0].content);
         $('#btnDelete').data( "id", array.data[0].id_service );
         $('#btnModify').data( "id", array.data[0].id_service );
-        $('#btnUpload').data( "id", array.data[0].id_service );
+        $('#iditem').val(id);
       }
     });
     $('#services-modal').modal('show');

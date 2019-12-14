@@ -29,7 +29,7 @@
           <div class="small-box bg-info">
             <div class="inner">
               <h3><span id="totalContacts">{!! $totalContacts !!}</span></h3>
-              <p>Nous contactes</p>
+              <p>Número de nous contactes</p>
             </div>
             <div class="icon">
               <i class="ion ion-email"></i>
@@ -42,7 +42,7 @@
           <div class="small-box bg-success">
             <div class="inner">
               <h3>0<sup style="font-size: 20px"></sup></h3>
-              <p>Visitants</p>
+              <p>Número de visitants</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>

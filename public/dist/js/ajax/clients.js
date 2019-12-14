@@ -90,7 +90,7 @@ $(function () {
         $('#inputContent').summernote('code', array.data[0].content);
         $('#btnDelete').data( "id", array.data[0].id_client );
         $('#btnModify').data( "id", array.data[0].id_client );
-        $('#btnUpload').data( "id", array.data[0].id_client );
+        $('#iditem').val(id);
       }
     });
     $('#client-modal').modal('show');

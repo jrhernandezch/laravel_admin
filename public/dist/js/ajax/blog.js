@@ -96,7 +96,7 @@ $(function () {
         $('#checkImportant').prop('checked', array.data[0].important);
         $('#btnDelete').data( "id", array.data[0].id_blog );
         $('#btnModify').data( "id", array.data[0].id_blog );
-        $('#btnUpload').data( "id", array.data[0].id_blog );
+        $('#iditem').val(id);
       }
     });
     $('#blog-modal').modal('show');

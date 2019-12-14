@@ -87,6 +87,7 @@ $(function () {
         $('#inputName').val(array.data[0].name);
         $('#inputContent').summernote('code', array.data[0].content);
         $('#btnModify').data( "id", array.data[0].id_company );
+        $('#iditem').val(id);
       }
     });
     $('#company-modal').modal('show');

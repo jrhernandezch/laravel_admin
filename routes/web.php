@@ -91,6 +91,9 @@ Route::post('/ajax/blog/delete', 'blogController@getAjaxDeleteBlog')->middleware
 ************************/
 Route::get('/ajax/dades', 'AjaxTableController@getAjaxContact');// API GET
 
+/* UPLOAD-IMG
+************************/
+Route::post('image-upload/{dir}', ['uses' => 'ImageUploadController@imageUploadPost'])->name('image.upload.post');
 
 /* LOGIN - REGISTER
 ********************************** */

@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
             @if ($totalContacts > 0)
-              <span class="badge badge-warning navbar-badge">1</span>
+              <span class="badge badge-warning navbar-badge">{!! $totalContacts !!}</span>
             @endif
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -62,10 +62,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
               @if ($totalContacts > 0)
-                <i class="fas fa-envelope mr-2"></i> 1 nou/s contacte/s
+                <i class="fas fa-envelope mr-2"></i> {!! $totalContacts !!} nou/s contacte/s
                 <span class="float-right text-muted text-sm">Ara</span>
               @else
-                <i class="fas fa-envelope mr-2"></i> No hi ha cap contacte
+                <i class="fas fa-envelope mr-2"></i> No hi ha cap nou contacte
               @endif
             </a>
           </div>

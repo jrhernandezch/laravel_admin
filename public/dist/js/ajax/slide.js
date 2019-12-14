@@ -89,7 +89,7 @@ $(function () {
         $('#inputTitle_slide').val(array.data[0].title);
         $('#inputContent_slide').summernote('code', array.data[0].content);
         $('#btnModify_slide').data( "id", array.data[0].id_slide );
-        $('#btnUpload_slide').data( "id", array.data[0].id_slide );
+        $('#iditem').val(id);
       }
     });
     $('#slide-modal').modal('show');
