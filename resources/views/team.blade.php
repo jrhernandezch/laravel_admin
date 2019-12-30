@@ -150,8 +150,6 @@
   <link rel="stylesheet" href="{!! asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') !!}">
   <!-- Sweetalert Css -->
   <link rel="stylesheet" href="{!! asset('plugins/sweetalert/sweetalert.css') !!}">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{!! asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}">
   <!-- Toastr -->
   <link rel="stylesheet" href="{!! asset('plugins/toastr/toastr.min.css') !!}">
 @endsection
@@ -164,8 +162,6 @@
   <script src="{!! asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') !!}"></script>
   <!-- Sweet Alert Plugin Js -->
   <script src="{!! asset('plugins/sweetalert/sweetalert.min.js') !!}"></script>
-  <!-- SweetAlert2 -->
-  <script src="{!! asset('plugins/sweetalert2/sweetalert2.min.js') !!}"></script>
   <!-- Toastr -->
   <script src="{!! asset('plugins/toastr/toastr.min.js') !!}"></script>
   <!-- data -->

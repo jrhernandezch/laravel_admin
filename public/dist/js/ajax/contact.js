@@ -113,7 +113,7 @@ $(function () {
       confirmButtonText: "Eliminar",
       cancelButtonText: "Cancelar",
       closeOnConfirm: false,
-      closeOnCancel: false
+      closeOnCancel: false,
     },
     function (isConfirm) {
       if (isConfirm) {
